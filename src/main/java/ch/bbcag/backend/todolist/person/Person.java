@@ -1,7 +1,11 @@
 package ch.bbcag.backend.todolist.person;
 
+import ch.bbcag.backend.todolist.item.Item;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Person {
@@ -13,6 +17,7 @@ public class Person {
     private String username;
 
     private String password;
+
 
     public Person() {
     }
@@ -62,4 +67,15 @@ public class Person {
         return Objects.hash(id);
     }
 
+
+    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY)
+    private Set<Item> items = new HashSet<>();
+
+    public Set<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Item> items) {
+        this.items = items;
+    }
 }
