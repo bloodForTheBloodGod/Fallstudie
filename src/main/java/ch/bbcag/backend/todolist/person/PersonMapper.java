@@ -1,5 +1,7 @@
 package ch.bbcag.backend.todolist.person;
+
 import ch.bbcag.backend.todolist.item.Item;
+
 import java.util.List;
 
 public class PersonMapper {
@@ -32,5 +34,6 @@ public class PersonMapper {
 
         return person;
     }
+
 
 }
