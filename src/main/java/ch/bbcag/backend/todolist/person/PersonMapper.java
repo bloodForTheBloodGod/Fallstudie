@@ -1,13 +1,28 @@
 package ch.bbcag.backend.todolist.person;
+import ch.bbcag.backend.todolist.item.Item;
+import java.util.List;
 
 public class PersonMapper {
     public static PersonResponseDTO toResponseDTO(Person person) {
         PersonResponseDTO personResponseDTO = new PersonResponseDTO();
 
+
+        if (person.getItems() != null) {
+            List<Integer> itemIds = person
+                    .getItems()
+                    .stream()
+                    .map(Item::getId)
+                    .toList();
+
+            personResponseDTO.setItemIds(itemIds);
+        }
+
         personResponseDTO.setId(person.getId());
         personResponseDTO.setUsername(person.getUsername());
 
         return personResponseDTO;
+
+
     }
 
     public static Person fromRequestDTO(PersonRequestDTO personRequestDTO) {
