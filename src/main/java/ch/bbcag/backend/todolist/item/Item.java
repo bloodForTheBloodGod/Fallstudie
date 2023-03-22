@@ -10,6 +10,7 @@ import java.util.Objects;
 @Entity
 public class Item {
 
+
     private String description;
 
     private String name;
