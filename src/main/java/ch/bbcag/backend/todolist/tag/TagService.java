@@ -31,11 +31,11 @@ public class TagService {
         return tags.stream().map(TagMapper::toResponseDTO).toList();
     }
 
-    public void deleteById(Integer id) {
+    public static void deleteById(Integer id) {
         tagRepository.deleteById(id);
     }
 
-    public TagResponseDTO insert(TagRequestDTO tagRequestDTO) {
+    public static TagResponseDTO insert(TagRequestDTO tagRequestDTO) {
         return TagMapper.toResponseDTO(tagRepository.save(TagMapper.fromRequestDTO(tagRequestDTO)));
     }
 
