@@ -3,6 +3,7 @@ package ch.bbcag.backend.todolist.tag;
 import java.util.List;
 
 public class TagResponseDTO {
+
     public Integer id;
     public List<Integer> itemIds;
 

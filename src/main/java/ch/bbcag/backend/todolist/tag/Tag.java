@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 
 
 import javax.persistence.*;
-import java.security.PrivateKey;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -20,7 +20,7 @@ public class Tag {
     private Integer id;
 
 
-    public Set<Item> getLinkedItems() {
+    public List<Integer> getLinkedItems() {
         return LinkedItems;
     }
 
