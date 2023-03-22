@@ -1,6 +1,9 @@
 package ch.bbcag.backend.todolist.tag;
 
+import ch.bbcag.backend.todolist.item.Item;
+
 import java.util.List;
+import java.util.Set;
 
 public class TagResponseDTO {
 
@@ -20,7 +23,7 @@ public class TagResponseDTO {
         return itemIds;
     }
 
-    public void setItemIds(List<Integer> itemIds) {
+    public void setItemIds(Set<Item> itemIds) {
         this.itemIds = itemIds;
     }
 }

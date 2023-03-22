@@ -44,22 +44,13 @@ public class ItemService {
         return ItemMapper.toResponseDTO(itemRepository.save(existingItem));
     }
 
-    private void mergeItems(Item existingItem, Item changingItem) {
+    private void mergeItems(Item existingTag, Item changingTag) {
 
-        if (changingItem.getName() != null) {
-            existingItem.setName(changingItem.getName());
+        if (changingTag.getName() != null) {
+            existingTag.setName(changingTag.getName());
         }
-        if (changingItem.getDescription() != null) {
+        if (changingTag.() != null) {
             existingItem.setDescription(changingItem.getDescription());
-        }
-        if (changingItem.getPerson() != null) {
-            existingItem.setPerson(changingItem.getPerson());
-        }
-        if (changingItem.getDoneAt() != null) {
-            existingItem.setDoneAt(changingItem.getDoneAt());
-        }
-        if (changingItem.getDeletedAt() != null) {
-            existingItem.setDeletedAt(changingItem.getDeletedAt());
         }
 
     }

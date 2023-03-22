@@ -1,9 +1,8 @@
 package ch.bbcag.backend.todolist.tag;
 
-import ch.bbcag.backend.todolist.tag.Tag;
 public class TagMapper {
 
-    public static TagResponseDTO tagResponseDTO(Tag tag) {
+    public static TagResponseDTO toResponseDTO(Tag tag) {
         TagResponseDTO tagResponseDTO = new TagResponseDTO();
         tagResponseDTO.setId(tag.getId());
         tagResponseDTO.setItemIds(tag.getLinkedItems());

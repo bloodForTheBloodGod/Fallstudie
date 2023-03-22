@@ -5,7 +5,6 @@ import org.hibernate.validator.constraints.UniqueElements;
 
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,12 +14,15 @@ public class Tag {
     @ManyToMany
     private Set<Item> LinkedItems;
 
+    @UniqueElements
+    private String name;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
 
-    public List<Integer> getLinkedItems() {
+    public Set<Item> getLinkedItems() {
         return LinkedItems;
     }
 
@@ -43,9 +45,6 @@ public class Tag {
     public void setName(String name) {
         this.name = name;
     }
-
-    @UniqueElements
-    private String name;
 
 
     @Override
