@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class TagService {
 
-    private final TagRepository tagRepository;
+    private static TagRepository tagRepository = null;
 
     @Autowired
     public TagService(TagRepository tagRepository) {

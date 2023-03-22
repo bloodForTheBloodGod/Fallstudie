@@ -2,10 +2,12 @@ package ch.bbcag.backend.todolist.item;
 
 
 import ch.bbcag.backend.todolist.person.Person;
+import ch.bbcag.backend.todolist.tag.Tag;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Item {
@@ -27,6 +29,9 @@ public class Item {
 
     private Timestamp doneAt;
 
+    @ManyToMany
+    @JoinColumn(name = "tag_id")
+    private Set<Tag> LinkedTags;
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;
