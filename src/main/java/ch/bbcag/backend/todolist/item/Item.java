@@ -90,13 +90,12 @@ public class Item {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Item item = (Item) o;
-        return Objects.equals(description, item.description) && Objects.equals(name, item.name) && Objects.equals(id, item.id) && Objects.equals(createdAt, item.createdAt) && Objects.equals(deletedAt, item.deletedAt) && Objects.equals(doneAt, item.doneAt) && Objects.equals(person, item.person);
+        if (!(o instanceof Item item)) return false;
+        return Objects.equals(getId(), item.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, name, id, createdAt, deletedAt, doneAt, person);
+        return Objects.hash(getId());
     }
 }
