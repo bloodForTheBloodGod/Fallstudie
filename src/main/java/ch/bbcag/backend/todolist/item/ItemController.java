@@ -1,8 +1,10 @@
 package ch.bbcag.backend.todolist.item;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.Repository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -19,9 +21,15 @@ public class ItemController {
         this.itemRepository = itemRepository;
     }
 
-    @GetMapping("{id}")
+
+
+    @GetMapping(path = "{id}")
     public Item findByID(@PathVariable Integer id) {
-        return itemRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        try {
+            return ResponseEntity.ok(itemServise.findByid(id));
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping
