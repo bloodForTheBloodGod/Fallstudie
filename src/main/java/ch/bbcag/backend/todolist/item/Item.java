@@ -6,6 +6,8 @@ import ch.bbcag.backend.todolist.tag.Tag;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -30,11 +32,41 @@ public class Item {
     private Timestamp doneAt;
 
     @ManyToMany
-    @JoinColumn(name = "tag_id")
-    private Set<Tag> LinkedTags;
+    @JoinTable(name = "item_linked_tags",
+            joinColumns = @JoinColumn(name = "item_id"))
+    private Set<Tag> tags = new LinkedHashSet<>();
+
+
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;
+
+
+    @ManyToMany
+    @JoinTable(
+            name = "item_tag",
+            joinColumns = @JoinColumn(name = "item_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private Set<Tag> linkedTags = new HashSet<>();
+
+    public Item() {
+    }
+
+    public Set<Tag> getLinkedTags() {
+        return linkedTags;
+    }
+
+    public void setLinkedTags(Set<Tag> linkedTags) {
+        this.linkedTags = linkedTags;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
 
     public String getDescription() {
         return description;

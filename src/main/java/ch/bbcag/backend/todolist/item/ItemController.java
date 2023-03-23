@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Objects;
 
 @RestController
 @RequestMapping(ItemController.PATH)
@@ -70,6 +71,15 @@ public class ItemController {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ItemController that)) return false;
+        return Objects.equals(itemService, that.itemService);
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(itemService);
+    }
 }

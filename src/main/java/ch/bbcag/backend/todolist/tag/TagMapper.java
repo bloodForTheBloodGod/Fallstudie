@@ -7,7 +7,10 @@ public class TagMapper {
         tagResponseDTO.setId(tag.getId());
         tagResponseDTO.setItemIds(tag.getLinkedItems());
 
+
         return tagResponseDTO;
+
+
     }
 
     public static Tag fromRequestDTO(TagRequestDTO tagRequestDTO) {

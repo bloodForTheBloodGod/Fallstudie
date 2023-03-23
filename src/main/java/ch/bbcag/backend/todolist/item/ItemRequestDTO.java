@@ -1,8 +1,13 @@
 package ch.bbcag.backend.todolist.item;
 
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 public class ItemRequestDTO {
+
+
 
     public String description;
 
@@ -13,6 +18,17 @@ public class ItemRequestDTO {
     private String name;
 
     private Timestamp doneAt;
+
+
+    private List<Integer> tagIds;
+
+    public List<Integer> getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(List<Integer> tagIds) {
+        this.tagIds = tagIds;
+    }
 
     public String getDescription() {
         return description;
@@ -53,4 +69,6 @@ public class ItemRequestDTO {
     public void setDoneAt(Timestamp doneAt) {
         this.doneAt = doneAt;
     }
+
+
 }

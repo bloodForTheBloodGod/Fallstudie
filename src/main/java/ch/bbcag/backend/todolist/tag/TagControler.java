@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Objects;
 
 @RestController
 @RequestMapping(TagControler.PATH)
@@ -68,5 +69,17 @@ public class TagControler {
         } catch (Error e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TagControler that)) return false;
+        return Objects.equals(tagService, that.tagService);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tagService);
     }
 }

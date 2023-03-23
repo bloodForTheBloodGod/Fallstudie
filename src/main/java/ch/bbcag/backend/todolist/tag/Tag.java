@@ -1,33 +1,31 @@
 package ch.bbcag.backend.todolist.tag;
 
 import ch.bbcag.backend.todolist.item.Item;
-import org.hibernate.validator.constraints.UniqueElements;
-
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 public class Tag {
 
-    @ManyToMany
-    private Set<Item> LinkedItems;
-
-    @UniqueElements
-    private String name;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(unique = true)
+    private String name;
 
-    public Set<Item> getLinkedItems() {
-        return LinkedItems;
+    @ManyToMany(mappedBy = "linkedTags")
+    private Set<Item> linkedItems = new HashSet<>();
+
+    public Tag() {
     }
 
-    public void setLinkedItems(Set<Item> linkedItems) {
-        LinkedItems = linkedItems;
+    public Tag(Integer id) {
+        this.id = id;
     }
 
     public Integer getId() {
@@ -46,16 +44,29 @@ public class Tag {
         this.name = name;
     }
 
+    public List<Integer> getLinkedItems() {
+        return linkedItems;
+    }
+
+    public void setLinkedItems(Set<Item> linkedItems) {
+        this.linkedItems = linkedItems;
+    }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Tag tag)) return false;
-        return Objects.equals(getId(), tag.getId());
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Tag tag = (Tag) o;
+        return Objects.equals(id, tag.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(id);
     }
+
 }

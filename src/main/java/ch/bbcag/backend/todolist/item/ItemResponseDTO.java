@@ -1,10 +1,23 @@
 package ch.bbcag.backend.todolist.item;
 
+import ch.bbcag.backend.todolist.tag.Tag;
+
 import java.sql.Timestamp;
+import java.util.Set;
 
 public class ItemResponseDTO extends ItemRequestDTO{
 
     public Integer id;
+
+    public  Set<Integer> TagIds;
+
+    public Set<Integer> getTagIds() {
+        return TagIds;
+    }
+
+    public void setTagIds(Set<Integer> tagIds) {
+        TagIds = tagIds;
+    }
 
     private Timestamp createdAt;
 

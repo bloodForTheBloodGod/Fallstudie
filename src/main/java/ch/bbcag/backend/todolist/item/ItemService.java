@@ -61,6 +61,9 @@ public class ItemService {
         if (changingItem.getDeletedAt() != null) {
             existingItem.setDeletedAt(changingItem.getDeletedAt());
         }
+        if (changingItem.getTags() != null) {
+            existingItem.setTags(changingItem.getTags());
+        }
 
     }
 

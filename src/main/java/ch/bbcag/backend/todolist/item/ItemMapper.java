@@ -1,6 +1,10 @@
 package ch.bbcag.backend.todolist.item;
 
 import ch.bbcag.backend.todolist.person.Person;
+import ch.bbcag.backend.todolist.tag.Tag;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 class ItemMapper {
     public static ItemResponseDTO toResponseDTO(Item item) {
@@ -12,20 +16,35 @@ class ItemMapper {
         itemResponseDTO.setDoneAt(item.getDoneAt());
         itemResponseDTO.setDeletedAt(item.getDeletedAt());
         itemResponseDTO.setPersonId(item.getPerson().getId());
+        itemResponseDTO.setTagIds(item.getTags());
         return itemResponseDTO;
     }
 
     public static Item fromRequestDTO(ItemRequestDTO itemRequestDTO) {
         Item item = new Item();
+
         item.setName(itemRequestDTO.getName());
         item.setDescription(itemRequestDTO.getDescription());
+
         item.setDoneAt(itemRequestDTO.getDoneAt());
         item.setDeletedAt(itemRequestDTO.getDeletedAt());
+
         if (itemRequestDTO.getPersonId() != null) {
             item.setPerson(new Person(itemRequestDTO.getPersonId()));
-        } else {
-            item.setPerson(null);
         }
+
+        if (itemRequestDTO.getTagIds() != null) {
+            Set<Tag> linkedTags = itemRequestDTO
+                    .getTagIds()
+                    .stream()
+                    .map(Tag::new)
+                    .collect(Collectors.toSet());
+
+            item.setLinkedTags(linkedTags);
+        }
+
         return item;
     }
+
+
 }

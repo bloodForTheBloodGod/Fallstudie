@@ -58,5 +58,6 @@ public class PersonService {
             String newPassword = passwordEncoder.encode(changing.getPassword());
             existing.setPassword(newPassword);
         }
+
     }
 }
